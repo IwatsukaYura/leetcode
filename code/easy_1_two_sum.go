@@ -8,16 +8,17 @@ package code
 // @lc code=start
 
 func twoSum(nums []int, target int) []int {
-	result := []int{}
-    for i:=0; i<len(nums); i++{
-		for j:=i+1;j<len(nums); j++{
-			addNum := nums[i] + nums[j]
-			if (addNum == target){
-				result = []int{i,j}
-			}
+	resultMap := map[int]int{}
+	for index, value := range nums {
+		//value + want = target
+		want := target - value
+		if _, ok := resultMap[want]; ok != false {
+			return []int{resultMap[want], index}
 		}
+		resultMap[value] = index
 	}
-	return result
+	
+	return nil
 }
 // @lc code=end
 
